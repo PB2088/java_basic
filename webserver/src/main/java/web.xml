@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<servlet>
+		<servlet-name>loginServlet</servlet-name>
+		<servlet-class>org.pb.webserver.LoginServlet</servlet-class>
+	</servlet>
+
+    <servlet>
+        <servlet-name>registerServlet</servlet-name>
+        <servlet-class>org.pb.webserver.RegisterServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>otherServlet</servlet-name>
+        <servlet-class>org.pb.webserver.OtherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/g</url-pattern>
+    </servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>registerServlet</servlet-name>
+		<url-pattern>/register</url-pattern>
+		<url-pattern>/r</url-pattern>
+	</servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>otherServlet</servlet-name>
+        <url-pattern>/other</url-pattern>
+        <url-pattern>/o</url-pattern>
+    </servlet-mapping>
+</web-app>

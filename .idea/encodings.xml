@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_2019" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/ArrayBub.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/ArrayBubApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/HighArrayApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/InsertSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/InsertSortApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/SelectionSort.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/basic/SelectionSortApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/binarytree/BinaryTreeApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/linklist/FirstLastList.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/linklist/FirstLastListApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/linklist/LinkList.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/linklist/LinkListApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/queue/app/LinkQueueApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/queue/util/LinkQueue.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/recursion/TriangularApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/app/BracketChecker.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/app/LinkStackApp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/app/RevApp.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/app/Reverser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/app/StackXApp.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/util/LinkList.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/stack/util/LinkStack.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/data_structure_demo/src/main/java/org/pb/tree234/Node.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/io_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java8_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java_design_pattern" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/java_dynamic" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/juc_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jvm_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jvm_demo/src/main/java/org/pb/jvm/test03/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/net_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/rmi_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thread_demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/thread_demo/src/main/java/org/pb/history/TraditionalThreadCommunication.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/webserver" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xml_demo" charset="UTF-8" />
+  </component>
+</project>
