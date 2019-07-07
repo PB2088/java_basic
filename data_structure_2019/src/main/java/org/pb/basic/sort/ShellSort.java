@@ -29,42 +29,25 @@ public class ShellSort implements Sort {
      */
     @Override
     public void sort(long[] array) {
-/*        int h = 1;
+        int h = 1;
         while (h < array.length / 3) {
             h = h * 3 + 1;
-        }*/
-
-        for (int h = array.length / 2; h > 0; h /= 2) {
-            for (int i = h; i < array.length; i++) {
-                for (int j = i -h;j >= 0;j -=h) {
-                    if (array[j] > array[j+h]) {
-                        long temp = array[j];
-                        array[j] = array[j+h];
-                        array[j+h] = temp;
-                    }
-                }
-            }
         }
 
-        //System.out.println(Arrays.toString(array));
-    }
+        while (h > 0) {
+            for (int out = h; out < array.length; out++) {
+                long insertVal = array[out];
+                int insertIndex = out;
 
-    private void sortOf(long[] array) {
-/*        int h = 1;
-        while (h < array.length / 3) {
-            h = h * 3 + 1;
-        }*/
-
-        for (int h = array.length / 2; h > 0; h /= 2) {
-            for (int i = h; i < array.length; i++) {
-                for (int j = i -h;j >= 0;j -=h) {
-                    if (array[j] > array[j+h]) {
-                        long temp = array[j];
-                        array[j] = array[j+h];
-                        array[j+h] = temp;
-                    }
+                while (insertIndex - h >= 0 && insertVal < array[insertIndex - h]) {
+                    array[insertIndex] = array[insertIndex - h];
+                    insertIndex -= h;
                 }
+
+                array[insertIndex] = insertVal;
             }
+
+            h = (h - 1) / 3;
         }
 
         //System.out.println(Arrays.toString(array));

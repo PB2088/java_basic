@@ -37,8 +37,9 @@ public class ArraySH {
 		
 		int h = 1;
 		//计算分组最大间隔
-		while (h<nElems/3)
-			h = h*3+1;
+		while (h<nElems/3) {
+            h = h * 3 + 1;
+        }
 		
 		int flag = 1;
 		
