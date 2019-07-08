@@ -5,8 +5,9 @@ public class ArrayIns {
 	private int nElems;
 	
 	public ArrayIns(int maxSize) {
-		if (maxSize<0)
-			maxSize = 1;
+		if (maxSize<0) {
+            maxSize = 1;
+        }
 		theArray = new long[maxSize];
 		nElems = 0;
 	}
@@ -29,9 +30,10 @@ public class ArrayIns {
 	}
 
 	private void recQuickSort(int left, int right) {
-		if (right <= left)
+		if (right <= left) {
 			return;
-		
+        }
+
 		long pivot = theArray[right];
 		
 		int partition = partitionIt(left, right, pivot);
@@ -49,17 +51,20 @@ public class ArrayIns {
 		int flag = 1;
 
 		while (true) {
-			while (theArray[leftPtr] < pivot)
+			while (theArray[leftPtr] < pivot) {
 				leftPtr++;
+            }
 
-			while (rightPtr > leftPtr && theArray[rightPtr] > pivot)
+			while (rightPtr > leftPtr && theArray[rightPtr] > pivot) {
 				rightPtr--;
+            }
 
-			if (leftPtr >= rightPtr)
+			if (leftPtr >= rightPtr) {
 				break;
-			else
-				swap(leftPtr, rightPtr);
-			System.out.print("µÚ"+(flag++)+"ÌË»®·Ö½á¹û£º");
+            } else {
+                swap(leftPtr, rightPtr);
+            }
+            System.out.print("ç¬¬"+(flag++)+"è¶Ÿæ’åºç»“æœï¼š");
 			display();
 		}
 		return leftPtr;

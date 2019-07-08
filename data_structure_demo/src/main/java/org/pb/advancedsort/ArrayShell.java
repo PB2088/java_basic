@@ -1,12 +1,16 @@
 package org.pb.advancedsort;
 
-public class ArraySH {
+/**
+ * @author bo.peng
+ */
+public class ArrayShell {
 	private long[] theArray;
 	private int nElems;
 	
-	public ArraySH(int maxSize) {
-		if (maxSize<0)
-			maxSize = 1;
+	public ArrayShell(int maxSize) {
+		if (maxSize<0) {
+            maxSize = 1;
+        }
 		theArray = new long[maxSize];
 		nElems = 0;
 	}
@@ -20,10 +24,11 @@ public class ArraySH {
 		System.out.print("[");
 		for(int i=0;i<nElems;i++) {
 			if (theArray[i] != 0) {
-				if(i != nElems-1) 
-					System.out.print(theArray[i]+ ",");
-				else
-					System.out.print(theArray[i]);				
+				if(i != nElems-1) {
+                    System.out.print(theArray[i] + ",");
+                } else {
+                    System.out.print(theArray[i]);
+                }
 			}
 		}
 		System.out.print("]");

@@ -5,8 +5,9 @@ public class ArrayPar {
 	private int nElems;
 	
 	public ArrayPar(int maxSize) {
-		if (maxSize<0)
-			maxSize = 1;
+		if (maxSize<0) {
+            maxSize = 1;
+        }
 		theArray = new long[maxSize];
 		nElems = 0;
 	}
@@ -35,18 +36,21 @@ public class ArrayPar {
 		int flag = 1;
 		
 		while(true) {
-			while(leftPtr<rightPtr && theArray[leftPtr] < pivot)
-				leftPtr++;
+			while(leftPtr<rightPtr && theArray[leftPtr] < pivot) {
+                leftPtr++;
+            }
 			
-			while(rightPtr>leftPtr && theArray[rightPtr] > pivot)
-				rightPtr--;
+			while(rightPtr>leftPtr && theArray[rightPtr] > pivot) {
+                rightPtr--;
+            }
 			
-			if (leftPtr >= rightPtr)
-				break;
-			else 
-				swap(leftPtr,rightPtr);
+			if (leftPtr >= rightPtr) {
+                break;
+            } else {
+                swap(leftPtr, rightPtr);
+            }
 			
-			System.out.print("µÚ"+(flag++)+"ÌË»®·Ö½á¹û£º");
+			System.out.print("ç¬¬"+(flag++)+"è¶Ÿåˆ’åˆ†ç»“æžœï¼š");
 			display();
 		}
 		return leftPtr;

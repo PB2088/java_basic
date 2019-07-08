@@ -5,7 +5,7 @@ import java.util.Random;
 public class ShellSortApp {
 	public static void main(String[] args) {
 		int maxSize = 16;
-		ArraySH arraySH = new ArraySH(maxSize);
+		ArrayShell arraySH = new ArrayShell(maxSize);
 /*		arraySH.insert(23);
 		arraySH.insert(91);
 		arraySH.insert(45);
