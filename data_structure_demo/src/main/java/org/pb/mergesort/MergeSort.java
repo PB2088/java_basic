@@ -1,5 +1,8 @@
 package org.pb.mergesort;
 
+/**
+ * @author bo.peng
+ */
 public class MergeSort {
 
 	
@@ -65,8 +68,9 @@ public class MergeSort {
 	}
 
 	public void display(long[] arr) {
-		for (int i=0;i<arr.length;i++)
-			System.out.print(arr[i]+" ");
+		for (int i=0;i<arr.length;i++) {
+            System.out.print(arr[i] + " ");
+        }
 		System.out.println("");
 	}
 	
