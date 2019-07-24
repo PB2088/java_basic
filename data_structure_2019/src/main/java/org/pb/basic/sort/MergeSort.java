@@ -12,7 +12,7 @@ import java.util.Arrays;
 public class MergeSort implements Sort {
 
     public static void main(String[] args) {
-        long[] array = {3, 9, 1, 4, 7, 8, 5,0,2,-1,11,-2,22,13,6};
+        long[] array = {3, 9, 1, 4, 7, 8, 5, 0, 2, -1, 11, -2, 22, 13, 6, 9, 7, 3, 11};
         System.out.println("排序前：");
         System.out.println(Arrays.toString(array));
         System.out.println("----------------");
@@ -32,7 +32,8 @@ public class MergeSort implements Sort {
 
     /**
      * 归并排序具体操作
-     * @param theArray 待排序的数组
+     *
+     * @param theArray   待排序的数组
      * @param lowerBound
      * @param highBound
      * @param workSpace
@@ -93,8 +94,8 @@ public class MergeSort implements Sort {
 
         /** 3.把排好顺序的数据,重新拷贝回theArray */
         /*System.arraycopy(workSpace, 0, theArray, lowerCopyIndex, (highBound - lowerCopyIndex + 1));*/
-        for (int i=0;i<(highBound-lowerCopyIndex+1);i++) {
-            theArray[lowerCopyIndex+i] = workSpace[i];
+        for (int i = 0; i < (highBound - lowerCopyIndex + 1); i++) {
+            theArray[lowerCopyIndex + i] = workSpace[i];
         }
     }
 }
