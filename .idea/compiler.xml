@@ -23,20 +23,20 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="data_structure_2019" target="1.8" />
-      <module name="data_structure_demo" target="1.8" />
-      <module name="io_demo" target="1.8" />
-      <module name="java8_demo" target="1.8" />
-      <module name="java_basic_demo" target="1.8" />
+      <module name="data_structure_demo" target="1.7" />
+      <module name="io_demo" target="1.7" />
+      <module name="java8_demo" target="1.7" />
+      <module name="java_basic_demo" target="1.7" />
       <module name="java_basic_demo_mv" target="1.8" />
-      <module name="java_design_pattern" target="1.8" />
-      <module name="java_dynamic" target="1.8" />
-      <module name="juc_demo" target="1.8" />
-      <module name="jvm_demo" target="1.8" />
-      <module name="net_demo" target="1.8" />
-      <module name="rmi_demo" target="1.8" />
-      <module name="thread_demo" target="1.8" />
-      <module name="webserver" target="1.8" />
-      <module name="xml_demo" target="1.8" />
+      <module name="java_design_pattern" target="1.7" />
+      <module name="java_dynamic" target="1.7" />
+      <module name="juc_demo" target="1.7" />
+      <module name="jvm_demo" target="1.7" />
+      <module name="net_demo" target="1.7" />
+      <module name="rmi_demo" target="1.7" />
+      <module name="thread_demo" target="1.7" />
+      <module name="webserver" target="1.7" />
+      <module name="xml_demo" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
