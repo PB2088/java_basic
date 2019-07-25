@@ -50,7 +50,5 @@ public class FileRename {
 
     public static void main(String[] args) {
         rename("H:\\投资理财课程");
-
-
     }
 }

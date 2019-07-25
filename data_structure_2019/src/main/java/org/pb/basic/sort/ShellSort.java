@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class ShellSort implements Sort {
     public static void main(String[] args) {
-        long[] array = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0};
+        long[] array = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0, 9, 1, 7, 8};
         System.out.println("排序前：");
         System.out.println(Arrays.toString(array));
         System.out.println("----------------");

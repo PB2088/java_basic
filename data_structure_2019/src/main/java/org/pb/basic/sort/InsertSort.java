@@ -9,7 +9,7 @@ import java.util.Arrays;
 public class InsertSort implements Sort {
 
     public static void main(String[] args) {
-        long[] array = {8,9,1,7,2,3,5,4,6,0};
+        long[] array = {8, 9, 1, 7, 2, 3, 5, 4, 6, 0, 9};
         System.out.println("排序前：");
         System.out.println(Arrays.toString(array));
         System.out.println("----------------");
@@ -31,14 +31,14 @@ public class InsertSort implements Sort {
 
         for (int i = 1; i < array.length; i++) {
             long insertVal = array[i];
-            int insertIndex = i -1;
+            int insertIndex = i - 1;
 
-            while (insertIndex >=0 && insertVal < array[insertIndex]) {
+            while (insertIndex >= 0 && insertVal < array[insertIndex]) {
                 array[insertIndex + 1] = array[insertIndex];
-                insertIndex --;
+                insertIndex--;
             }
 
-            if (insertIndex +1 != i) {
+            if (insertIndex + 1 != i) {
                 array[insertIndex + 1] = insertVal;
             }
 
