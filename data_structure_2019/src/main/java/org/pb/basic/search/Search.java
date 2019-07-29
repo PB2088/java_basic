@@ -1,5 +1,7 @@
 package org.pb.basic.search;
 
+import java.util.List;
+
 /**
  * 查找接口
  * @author boge.peng
@@ -12,5 +14,5 @@ public interface Search {
      * @param findVal 被查找的关键值
      * @return 被查找的关键值在数组中的索引位置,未找到返回-1
      */
-    int search(long[] array,long findVal);
+    List<Integer> search(long[] array, long findVal);
 }
