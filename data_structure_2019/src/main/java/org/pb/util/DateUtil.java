@@ -149,6 +149,14 @@ public final class DateUtil {
     	  } 
     	  return dayForWeek;
     }
+
+	/**
+	 * <p>获取一个当前日期对象</p>
+	 * @return
+	 */
+	public static Date now() {
+		return new Date();
+	}
     
     public static void main(String[] args) throws ParseException {
     	Date date = parseStrToDate("2016年8月17日", FormatPattern.DATE_CN_FORMAT_PATTERN,00,0,0);
@@ -160,5 +168,10 @@ public final class DateUtil {
     	System.out.println(dateGetWeekDay(new Date()));
 		System.out.println(parseDateToStr(date, FormatPattern.DATE_TIME_FORMAT_PATTERN));
 		System.out.println(parseDateToStr(new Date(), FormatPattern.DATE_TIME_YMD_FORMAT_PATTERN));
+
+		System.out.println(now().getTime());
+		System.out.println(parseStrToDate("2017-08-02 10:23:59", FormatPattern.DATE_TIME_FORMAT_PATTERN).getTime());
+		System.out.println(now().getTime() - parseStrToDate("2017-08-02 10:23:59", FormatPattern.DATE_TIME_FORMAT_PATTERN).getTime());
+		System.out.println(parseStrToDate("2017-08-02 10:23:59", FormatPattern.DATE_TIME_FORMAT_PATTERN).getTime() - now().getTime());
 	}
 }

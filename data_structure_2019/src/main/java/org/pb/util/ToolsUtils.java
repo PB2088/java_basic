@@ -60,7 +60,14 @@ public final class ToolsUtils {
 	    return s.matches(SYMBOL);
     }
 
+    private static final String AUCTION_BOOST_CAR_LIST_CACHE_KEY = "AUCTION_BOOST_CAR_LIST_CACHE_KEY_%s";
     public static void main(String[] args) {
-        System.out.println("30 . 5  *5 0 - 2".replaceAll("\\s+",""));
+        System.out.println(String.format(AUCTION_BOOST_CAR_LIST_CACHE_KEY, "2019-7-25"));
+
+
+        String uri = "/eapi/lubao/auction/verifySession.do";
+        String url = "http://localhost:8080/eapi/lubao/auction/verifySession.do";
+
+        System.out.println(url.replace(uri, "/logout.do"));
     }
 }
