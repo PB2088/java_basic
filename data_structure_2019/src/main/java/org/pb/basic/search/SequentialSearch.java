@@ -2,6 +2,9 @@ package org.pb.basic.search;
 
 import org.pb.util.ToolsUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 顺序查找
  * @author boge.peng
@@ -24,19 +27,20 @@ public class SequentialSearch implements Search {
      * @return 被查找的关键值在数组中的索引位置,未找到返回-1
      */
     @Override
-    public int search(long[] array, long findVal) {
+    public List<Integer> search(long[] array, long findVal) {
         if (ToolsUtils.isEmpty(array)) {
             throw new RuntimeException("数组为空!");
         }
 
         int index = -1;
+        List<Integer> indexList = new ArrayList<>();
         for (int i = 0; i < array.length; i++) {
             if (array[i] == findVal) {
                 index = i;
-                break;
+                indexList.add(index);
             }
         }
 
-        return index;
+        return indexList;
     }
 }
