@@ -1,5 +1,6 @@
 package org.pb.util;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -69,5 +70,9 @@ public final class ToolsUtils {
         String url = "http://localhost:8080/eapi/lubao/auction/verifySession.do";
 
         System.out.println(url.replace(uri, "/logout.do"));
+
+
+        System.out.println(Math.round(2137.5));
+        System.out.println(BigDecimal.valueOf(21824234.9782342240020424).setScale(2,BigDecimal.ROUND_HALF_DOWN));
     }
 }
