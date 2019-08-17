@@ -1,5 +1,7 @@
 package org.pb.basic.tree;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 /**
@@ -9,6 +11,18 @@ import org.junit.Test;
 public class BinaryTreeTest {
 
     private BinaryTree<Hero> binaryTree;
+
+    @Before
+    public void setUp() {
+        binaryTree = new BinaryTree();
+
+        binaryTree.insert(005,new Hero(005,"宋江"));
+        binaryTree.insert(003,new Hero(003,"卢俊义"));
+        binaryTree.insert(006,new Hero(006,"吴用"));
+        binaryTree.insert(002,new Hero(002,"林冲"));
+        binaryTree.insert(004,new Hero(004,"鲁智深"));
+        binaryTree.insert(007,new Hero(007,"花荣"));
+    }
 
     @Test
     public void testInser() {
@@ -32,4 +46,21 @@ public class BinaryTreeTest {
 
     }
 
+    @Test
+    public void testPreOrderSearch() {
+        Hero hero = binaryTree.preOrderSearch(003);
+        System.out.println(hero);
+    }
+
+    @Test
+    public void testInOrderSearch() {
+        Hero hero = binaryTree.inOrderSearch(007);
+        System.out.println(hero);
+    }
+
+    @Test
+    public void testPostOrderSearch() {
+        Hero hero = binaryTree.postOrderSearch(007);
+        System.out.println(hero);
+    }
 }

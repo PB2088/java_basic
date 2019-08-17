@@ -26,6 +26,14 @@ public class Hero {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return "Hero{" +
+                "num=" + num +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public void setName(String name) {
         this.name = name;
     }

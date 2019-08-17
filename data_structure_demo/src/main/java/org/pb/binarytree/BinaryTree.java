@@ -36,7 +36,7 @@ public class BinaryTree {
     }
 
     private Node findKey(long keyValue,Node node) {
-	    if (Objects.equals(node,null) || (node != null && node.getiData() == keyValue)) {
+	    if (Objects.isNull(node) || (node != null && node.getiData() == keyValue)) {
 	        return node;
         } else {
             Node node1 = findKey(keyValue, node.getLeftChild());
