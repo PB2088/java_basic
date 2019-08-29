@@ -33,4 +33,20 @@ public class ThreadedBinaryTreeTest {
         System.out.println(threadedBinaryTree.getRoot());
     }
 
+    @Test
+    public void testInOrderThreadedNodes() {
+        threadedBinaryTree.createBinaryTree(array,0);
+
+        threadedBinaryTree.inOrderThreadedNodes();
+    }
+
+    @Test
+    public void testInOrderThreadedList() {
+        threadedBinaryTree.createBinaryTree(array,0);
+
+        threadedBinaryTree.inOrderThreadedNodes();
+
+        threadedBinaryTree.inOrderThreadedList();
+    }
+
 }
