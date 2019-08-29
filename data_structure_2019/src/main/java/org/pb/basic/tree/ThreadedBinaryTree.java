@@ -78,7 +78,7 @@ public class ThreadedBinaryTree<V> {
      */
     private void inOrderThreadedNodes(TreeNode node) {
         /** 如果node为空,不能线索化 */
-        if (Objects.nonNull(node)) {
+        if (Objects.isNull(node)) {
             return;
         }
 
@@ -87,8 +87,10 @@ public class ThreadedBinaryTree<V> {
 
         /** 线索化当前节点 */
         //左指针为空,将左指针指向前驱节点
-        if (Objects.nonNull(node.getLeftChild())) {
+        if (Objects.isNull(node.getLeftChild())) {
+            /** 当前节点的左指针指向前驱节点 */
             node.setLeftChild(prevNode);
+            /** 修改当前节点的左指针的类型 */
             node.setLeftThreaded(Boolean.TRUE);
         }
 
@@ -98,6 +100,7 @@ public class ThreadedBinaryTree<V> {
             prevNode.setRightThreaded(Boolean.TRUE);
         }
 
+        //每处理一个节点后,让当前节点是下一个节点的前驱节点
         prevNode = node;
 
         /** 线索化右子树 */
@@ -129,11 +132,11 @@ public class ThreadedBinaryTree<V> {
         /**
          * 左指针域类型  false：指向子节点; true：前驱或后继线索
          */
-        boolean leftThreaded = false;
+        boolean leftThreaded;
         /**
          * 右指针域类型  false：指向子节点; true：前驱或后继线索
          */
-        boolean rightThreaded = false;
+        boolean rightThreaded;
 
         public TreeNode(long key, V value) {
             this.key = key;
