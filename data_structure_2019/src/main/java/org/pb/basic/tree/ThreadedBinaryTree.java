@@ -38,32 +38,6 @@ public class ThreadedBinaryTree<V> {
         return root = treeNode;
     }
 
-    public void inOrderThreadedList() {
-        inOrderThreadedList(root);
-    }
-
-
-    private void inOrderThreadedList(TreeNode node) {
-
-        while (Objects.nonNull(node)) {
-            while (!node.isLeftThreaded() && Objects.nonNull(node.getLeftChild())) {
-                node = node.getLeftChild();
-            }
-
-            System.out.println(node.getValue());
-
-            while (node.isRightThreaded()) {
-                node = node.getRightChild();
-                System.out.println(node.getValue());
-            }
-
-            node = node.getRightChild();
-
-        }
-
-
-    }
-
     /**
      * 中序线索二叉树
      */
@@ -105,6 +79,32 @@ public class ThreadedBinaryTree<V> {
 
         /** 线索化右子树 */
         inOrderThreadedNodes(node.getRightChild());
+    }
+
+    public void inOrderThreadedList() {
+        inOrderThreadedList(root);
+    }
+
+    private void inOrderThreadedList(TreeNode node) {
+
+        while (Objects.nonNull(node)) {
+            /** 找到中序遍历的开始节点 */
+            while (!node.isLeftThreaded() && Objects.nonNull(node.getLeftChild())) {
+                node = node.getLeftChild();
+            }
+
+            System.out.println(node.getValue());
+
+            //如果当前节点的左指针指向的是后续节点,就一起输出
+            while (node.isRightThreaded()) {
+                //获取当前节点的后续节点
+                node = node.getRightChild();
+                System.out.println(node.getValue());
+            }
+
+            node = node.getRightChild();
+
+        }
     }
 
 
