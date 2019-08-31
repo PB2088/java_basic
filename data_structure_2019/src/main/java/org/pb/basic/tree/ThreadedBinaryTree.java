@@ -1,5 +1,8 @@
 package org.pb.basic.tree;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import org.pb.util.Test;
+
 import javax.swing.tree.TreeNode;
 import java.util.Objects;
 
@@ -33,6 +36,16 @@ public class ThreadedBinaryTree<V> {
             treeNode = new TreeNode(index, array[index]);
             treeNode.setLeftChild(createBinaryTree(array, index * 2 + 1));
             treeNode.setRightChild(createBinaryTree(array, index * 2 + 2));
+
+            /** 记录节点的父节点（后序线索化遍历时使用） */
+            if (Objects.nonNull(treeNode.getLeftChild())) {
+                treeNode.getLeftChild().setParent(treeNode);
+            }
+
+            /** 记录节点的父节点（后序线索化遍历时使用） */
+            if (Objects.nonNull(treeNode.getRightChild())) {
+                treeNode.getRightChild().setParent(treeNode);
+            }
         }
 
         return root = treeNode;
@@ -95,7 +108,7 @@ public class ThreadedBinaryTree<V> {
 
             System.out.println(node.getValue());
 
-            //如果当前节点的左指针指向的是后续节点,就一起输出
+            //如果当前节点的左指针指向的是后续节点,就一直输出
             while (node.isRightThreaded()) {
                 //获取当前节点的后续节点
                 node = node.getRightChild();
@@ -105,6 +118,140 @@ public class ThreadedBinaryTree<V> {
             node = node.getRightChild();
 
         }
+    }
+
+    /**
+     * 前序线索化二叉树
+     */
+    public void preOrderThreadedNodes() {
+        preOrderThreadedNodes(root);
+    }
+
+    /**
+     * 前序线索化二叉树
+     *
+     * @param node
+     */
+    private void preOrderThreadedNodes(TreeNode node) {
+        if (Objects.isNull(node)) {
+            return;
+        }
+
+        /** 处理当前节点,左指针为空,将左指针指向前驱节点 */
+        if (Objects.isNull(node.getLeftChild())) {
+            node.setLeftChild(prevNode);
+            node.setLeftThreaded(Boolean.TRUE);
+        }
+
+        /** 前一个节点的后继节点指向当前节点 */
+        if (Objects.nonNull(prevNode) && Objects.isNull(prevNode.getRightChild())) {
+            prevNode.setRightChild(node);
+            prevNode.setRightThreaded(Boolean.TRUE);
+        }
+
+        /** 每处理完一个节点,让当前节点是下一个节点的前驱节点 */
+        prevNode = node;
+
+        /** 线索化左子树 */
+        if (!node.isLeftThreaded()) {
+            preOrderThreadedNodes(node.getLeftChild());
+        }
+
+        /** 线索化右子树 */
+        if (!node.isRightThreaded()) {
+            preOrderThreadedNodes(node.getRightChild());
+        }
+    }
+
+    /**
+     * 前序遍历线索化二叉树
+     */
+    public void preOrderThreadedList() {
+        preOrderThreadedList(root);
+    }
+
+    /**
+     * 前序遍历线索化二叉树(按照后继线索遍历)
+     * @param node
+     */
+    private void preOrderThreadedList(TreeNode node) {
+        while (Objects.nonNull(node)) {
+            while (!node.isLeftThreaded()) {
+                System.out.println(node.getValue());
+                node = node.getLeftChild();
+            }
+
+            System.out.println(node.getValue());
+
+            node = node.getRightChild();
+
+        }
+    }
+
+    public void postOrderThreadedNodes() {
+        postOrderThreadedNodes(root);
+    }
+
+    /**
+     * 后序线索化二叉树
+     *
+     * @param node
+     */
+    private void postOrderThreadedNodes(TreeNode node) {
+       if (Objects.isNull(node)) {
+           return;
+       }
+
+       if (!node.isLeftThreaded()) {
+           postOrderThreadedNodes(node.getLeftChild());
+       }
+
+       if (!node.isRightThreaded()) {
+           postOrderThreadedNodes(node.getRightChild());
+       }
+
+        /** 处理当前节点,左指针为空,将左指针指向前驱节点 */
+        if (Objects.isNull(node.getLeftChild())) {
+            node.setLeftChild(prevNode);
+            node.setLeftThreaded(Boolean.TRUE);
+        }
+
+        /** 前一个节点的后继节点指向当前节点 */
+        if (Objects.nonNull(prevNode) && Objects.isNull(prevNode.getRightChild())) {
+            prevNode.setRightChild(node);
+            prevNode.setRightThreaded(Boolean.TRUE);
+        }
+
+        /** 每处理完一个节点,让当前节点是下一个节点的前驱节点 */
+        prevNode = node;
+    }
+
+    /**
+     * 前序遍历线索化二叉树
+     */
+    public void postOrderThreadedList() {
+        postOrderThreadedList(root);
+    }
+
+    /**
+     * 后序遍历线索化二叉树
+     * @param node
+     */
+    private void postOrderThreadedList(TreeNode node) {
+
+        while (Objects.nonNull(node) && !node.isLeftThreaded()) {
+            node = node.getLeftChild();
+        }
+
+        TreeNode preNode = null;
+        while (Objects.nonNull(node)) {
+            System.out.println(node.getValue());
+
+            if (node.isRightThreaded()) {
+                node = node.getRightChild();
+            }
+        }
+
     }
 
 
@@ -132,11 +279,14 @@ public class ThreadedBinaryTree<V> {
         /**
          * 左指针域类型  false：指向子节点; true：前驱或后继线索
          */
-        boolean leftThreaded;
+        private boolean leftThreaded;
         /**
          * 右指针域类型  false：指向子节点; true：前驱或后继线索
          */
-        boolean rightThreaded;
+        private boolean rightThreaded;
+
+        /** 父节点指针(后续线索化使用) */
+        private TreeNode<V> parent;
 
         public TreeNode(long key, V value) {
             this.key = key;
@@ -199,6 +349,14 @@ public class ThreadedBinaryTree<V> {
 
         public void setRightThreaded(boolean rightThreaded) {
             this.rightThreaded = rightThreaded;
+        }
+
+        public TreeNode<V> getParent() {
+            return parent;
+        }
+
+        public void setParent(TreeNode<V> parent) {
+            this.parent = parent;
         }
     }
 }

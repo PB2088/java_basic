@@ -25,28 +25,51 @@ public class ThreadedBinaryTreeTest {
         ).toArray(new Hero[0]);
 
         threadedBinaryTree = new ThreadedBinaryTree();
+
+        threadedBinaryTree.createBinaryTree(array,0);
     }
 
     @Test
     public void testCreateBinaryTree() {
-        threadedBinaryTree.createBinaryTree(array,0);
         System.out.println(threadedBinaryTree.getRoot());
     }
 
     @Test
     public void testInOrderThreadedNodes() {
-        threadedBinaryTree.createBinaryTree(array,0);
-
         threadedBinaryTree.inOrderThreadedNodes();
     }
 
     @Test
     public void testInOrderThreadedList() {
-        threadedBinaryTree.createBinaryTree(array,0);
 
         threadedBinaryTree.inOrderThreadedNodes();
 
         threadedBinaryTree.inOrderThreadedList();
+    }
+
+    @Test
+    public void testPreOrderThreadedNodes() {
+        threadedBinaryTree.preOrderThreadedNodes();
+    }
+
+
+    @Test
+    public void testPreOrderThreadedList() {
+        threadedBinaryTree.preOrderThreadedNodes();
+
+        threadedBinaryTree.preOrderThreadedList();
+    }
+
+    @Test
+    public void testPostOrderThreadedNodes() {
+        threadedBinaryTree.postOrderThreadedNodes();
+    }
+
+    @Test
+    public void testPostOrderThreadedList() {
+        threadedBinaryTree.postOrderThreadedNodes();
+
+        threadedBinaryTree.postOrderThreadedList();
     }
 
 }
