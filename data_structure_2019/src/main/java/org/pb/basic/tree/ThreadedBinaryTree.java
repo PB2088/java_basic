@@ -1,9 +1,5 @@
 package org.pb.basic.tree;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
-import org.pb.util.Test;
-
-import javax.swing.tree.TreeNode;
 import java.util.Objects;
 
 /**
@@ -172,6 +168,7 @@ public class ThreadedBinaryTree<V> {
 
     /**
      * 前序遍历线索化二叉树(按照后继线索遍历)
+     *
      * @param node
      */
     private void preOrderThreadedList(TreeNode node) {
@@ -198,17 +195,17 @@ public class ThreadedBinaryTree<V> {
      * @param node
      */
     private void postOrderThreadedNodes(TreeNode node) {
-       if (Objects.isNull(node)) {
-           return;
-       }
+        if (Objects.isNull(node)) {
+            return;
+        }
 
-       if (!node.isLeftThreaded()) {
-           postOrderThreadedNodes(node.getLeftChild());
-       }
+        if (!node.isLeftThreaded()) {
+            postOrderThreadedNodes(node.getLeftChild());
+        }
 
-       if (!node.isRightThreaded()) {
-           postOrderThreadedNodes(node.getRightChild());
-       }
+        if (!node.isRightThreaded()) {
+            postOrderThreadedNodes(node.getRightChild());
+        }
 
         /** 处理当前节点,左指针为空,将左指针指向前驱节点 */
         if (Objects.isNull(node.getLeftChild())) {
@@ -235,6 +232,7 @@ public class ThreadedBinaryTree<V> {
 
     /**
      * 后序遍历线索化二叉树
+     *
      * @param node
      */
     private void postOrderThreadedList(TreeNode node) {
@@ -245,10 +243,30 @@ public class ThreadedBinaryTree<V> {
 
         TreeNode preNode = null;
         while (Objects.nonNull(node)) {
-            System.out.println(node.getValue());
 
             if (node.isRightThreaded()) {
+                System.out.println(node.getValue());
+
+                preNode = node;
                 node = node.getRightChild();
+            } else {
+
+                if (node.getRightChild() == preNode) {
+                    System.out.println(node.getValue());
+
+                    if (node == root) {
+                        return;
+                    }
+
+                    preNode = node;
+                    node = node.parent;
+                } else {
+                    node = node.getRightChild();
+                    while(Objects.nonNull(node) && !node.isLeftThreaded()) {
+                        node = node.getLeftChild();
+                    }
+                }
+
             }
         }
 
@@ -285,7 +303,9 @@ public class ThreadedBinaryTree<V> {
          */
         private boolean rightThreaded;
 
-        /** 父节点指针(后续线索化使用) */
+        /**
+         * 父节点指针(后续线索化使用)
+         */
         private TreeNode<V> parent;
 
         public TreeNode(long key, V value) {

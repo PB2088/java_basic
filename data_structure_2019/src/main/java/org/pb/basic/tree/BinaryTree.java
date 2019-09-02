@@ -1,6 +1,5 @@
 package org.pb.basic.tree;
 
-import javax.swing.tree.TreeNode;
 import java.util.Objects;
 
 /**
