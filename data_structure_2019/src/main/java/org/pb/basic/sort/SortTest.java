@@ -18,7 +18,7 @@ public class SortTest {
 
     private long[] array;
 
-    private static final int MAX_SIZE = 8000000;
+    private static final int MAX_SIZE = 80000000;
 
     @Before
     public void setUp() {
@@ -118,5 +118,17 @@ public class SortTest {
 
 /*        System.out.println();
         System.out.println(Arrays.toString(array));*/
+    }
+
+    @Test
+    public void testHeapSort() {
+        System.out.printf("排序前:%s", DateUtil.parseDateToStr(new Date(), DateUtil.FormatPattern
+                .DATE_TIME_SSS_FORMAT_PATTERN));
+
+        sort = new HeapSort();
+        sort.sort(array);
+
+        System.out.printf("\n排序后:%s", DateUtil.parseDateToStr(new Date(), DateUtil.FormatPattern
+                .DATE_TIME_SSS_FORMAT_PATTERN));
     }
 }
