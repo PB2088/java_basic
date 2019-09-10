@@ -14,5 +14,8 @@ public class Test {
         sqlBuf.replace(sqlBuf.length() -1, sqlBuf.length(), ")");
 
         System.out.println(sqlBuf);
+
+
+        System.out.println(String.format("wf_workitems_%03d", 3));
     }
 }
