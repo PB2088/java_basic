@@ -1,7 +1,5 @@
 package org.pb.basic.recursion;
 
-import java.util.Arrays;
-
 /**
  * 迷宫
  *

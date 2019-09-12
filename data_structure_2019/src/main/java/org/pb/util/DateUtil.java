@@ -1,10 +1,7 @@
 package org.pb.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *  日期处理工具类
@@ -157,6 +154,32 @@ public final class DateUtil {
 	public static Date now() {
 		return new Date();
 	}
+
+	public static Date time(Date day, int hour,int minute,int second){
+		if(day==null) {
+			return null;
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(day);
+		cal.set(Calendar.HOUR_OF_DAY, hour);
+		cal.set(Calendar.MINUTE, minute);
+		cal.set(Calendar.SECOND, second);
+		cal.set(Calendar.MILLISECOND, 0);
+
+		return cal.getTime();
+	}
+
+	public static Date add(Date day, int type,int value){
+		if(Objects.isNull(day)) {
+			return day;
+		}
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(day);
+
+		cal.add(type,value);
+
+		return cal.getTime();
+	}
     
     public static void main(String[] args) throws ParseException {
     	Date date = parseStrToDate("2016年8月17日", FormatPattern.DATE_CN_FORMAT_PATTERN,00,0,0);
@@ -173,5 +196,8 @@ public final class DateUtil {
 		System.out.println(parseStrToDate("2017-08-02 10:23:59", FormatPattern.DATE_TIME_FORMAT_PATTERN).getTime());
 		System.out.println(now().getTime() - parseStrToDate("2017-08-02 10:23:59", FormatPattern.DATE_TIME_FORMAT_PATTERN).getTime());
 		System.out.println(parseStrToDate("2017-08-02 10:23:59", FormatPattern.DATE_TIME_FORMAT_PATTERN).getTime() - now().getTime());
+
+		System.out.println(time(now(), 0, 0, 0));
+		System.out.println(add(now(), Calendar.YEAR, 1));
 	}
 }

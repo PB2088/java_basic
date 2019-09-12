@@ -1,14 +1,12 @@
 package org.pb.basic.queue;
 
-import java.util.Scanner;
-
 /**
  * @author boge.peng
  * @create 2019-06-04 23:50
  */
-public class ArrayQueueTest {
+public class CircleArrayQueueTest {
     public static void main(String[] args) {
-        Queue<Integer> queue = new ArrayQueue<>(4);
+        Queue<Integer> queue = new CircleArrayQueue<>(5);
 
         queue.showQueue();
 

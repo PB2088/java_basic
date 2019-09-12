@@ -5,6 +5,7 @@ import org.pb.util.ToolsUtils;
 import java.util.Objects;
 
 /**
+ * 顺序二叉树
  * @author boge.peng
  * @create 2019-08-19 22:51
  */

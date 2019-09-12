@@ -1,4 +1,4 @@
-package org.pb.java;
+package org.pb;
 
 import static org.junit.Assert.assertTrue;
 

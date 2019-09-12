@@ -1,4 +1,4 @@
-package org.pb.java;
+package org.pb;
 
 /**
  * Hello world!
