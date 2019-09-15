@@ -19,8 +19,12 @@ public class HuffmanTree {
     private TreeNode root;
 
     public void createHuffmanTree(int[] array) {
-        List<TreeNode> treeNodes = createTreeNodeListByArray(array);
+        List<TreeNode<Integer>> treeNodes = createTreeNodeListByArray(array);
 
+        createHuffmanTree(treeNodes);
+    }
+
+    public <T> void createHuffmanTree(List<TreeNode<T>> treeNodes) {
         while (treeNodes.size() > 1) {
             Collections.sort(treeNodes);
 
@@ -41,6 +45,7 @@ public class HuffmanTree {
 
         this.root = treeNodes.get(0);
     }
+
 
     /**
      * 前序遍历赫夫曼树
@@ -68,12 +73,12 @@ public class HuffmanTree {
      * @param array
      * @return
      */
-    private static List<TreeNode> createTreeNodeListByArray(int[] array) {
+    private static List<TreeNode<Integer>> createTreeNodeListByArray(int[] array) {
         if (ToolsUtils.isEmpty(array)) {
             return Collections.emptyList();
         }
 
-        List<TreeNode> nodeList = new ArrayList<>();
+        List<TreeNode<Integer>> nodeList = new ArrayList<>();
         for (int i : array) {
             nodeList.add(new TreeNode(i));
         }
@@ -84,11 +89,16 @@ public class HuffmanTree {
         return root;
     }
 
-    protected static class TreeNode implements Comparable<TreeNode> {
+    protected static class TreeNode<T> implements Comparable<TreeNode> {
         /**
          * 节点权值
          */
         private int weight;
+
+        /**
+         * 数据域
+         */
+        private T data;
 
         /**
          * 左子节点
@@ -104,11 +114,16 @@ public class HuffmanTree {
             this.weight = weight;
         }
 
+        public TreeNode(int weight, T data) {
+            this.weight = weight;
+            this.data = data;
+        }
 
         @Override
         public String toString() {
             return "TreeNode{" +
                     "weight=" + weight +
+                    ", data=" + data +
                     '}';
         }
 
