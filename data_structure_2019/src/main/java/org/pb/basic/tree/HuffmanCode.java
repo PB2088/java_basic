@@ -25,7 +25,7 @@ public class HuffmanCode {
      * @return
      */
     public static List<HuffmanTree.TreeNode<Byte>> createTreeNodeList(byte[] bytes) {
-        Map<Byte,Integer> counts = new HashMap<>();
+        Map<Byte,Integer> counts = new HashMap<>(100);
         for (byte aByte : bytes) {
             Integer count = counts.get(aByte);
             if (Objects.isNull(count)) {
