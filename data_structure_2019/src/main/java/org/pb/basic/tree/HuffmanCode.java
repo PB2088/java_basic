@@ -23,6 +23,7 @@ public class HuffmanCode {
 
         byte[] bytes = huffmanCode.decode(huffmanBytes);
         System.out.println(new String(bytes));
+
     }
 
     /**
@@ -37,7 +38,7 @@ public class HuffmanCode {
 
         getHuffmanCodes(huffmanTree.getRoot(), "", new StringBuilder());
 
-        return zip(contentBytes, HUFF_MAN_CODE_MAP);
+        return zip(contentBytes);
     }
 
     /**
@@ -67,6 +68,7 @@ public class HuffmanCode {
 
     /**
      * 得到赫夫曼编码表
+     *
      * @param node          待处理的节点
      * @param code          路径：左子节点是0,右子节点是1
      * @param stringBuilder 用于拼接路径
@@ -94,17 +96,16 @@ public class HuffmanCode {
      * 根据赫夫曼编码表进行字节压缩
      *
      * @param bytes
-     * @param huffmanCodes
      * @return
      */
-    private byte[] zip(byte[] bytes, Map<Byte, String> huffmanCodes) {
+    private byte[] zip(byte[] bytes) {
         StringBuilder stringBuilder = new StringBuilder();
         for (byte aByte : bytes) {
-            stringBuilder.append(huffmanCodes.get(aByte));
+            stringBuilder.append(HUFF_MAN_CODE_MAP.get(aByte));
         }
 
         int len = stringBuilder.length() % 8 == 0 ? stringBuilder.length() / 8 : stringBuilder.length() / 8 + 1;
-        System.out.println("压缩："+stringBuilder);
+        /*System.out.println("压缩：" + stringBuilder);*/
 
         byte[] huffmanCodeBytes = new byte[len];
         int index = 0;
@@ -122,9 +123,9 @@ public class HuffmanCode {
     public byte[] decode(byte[] huffmanBytes) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < huffmanBytes.length; i++) {
-            stringBuilder.append(byteToBitString(huffmanBytes[i]));
+            stringBuilder.append(byteToBitString(huffmanBytes[i],!(i == huffmanBytes.length -1)));
         }
-        System.out.println("解压："+stringBuilder);
+        /*System.out.println("解压：" + stringBuilder);*/
 
         List<Byte> byteList = new ArrayList<>();
         for (int i = 0; i < stringBuilder.length(); ) {
@@ -159,11 +160,17 @@ public class HuffmanCode {
      * @param b
      * @return
      */
-    private String byteToBitString(byte b) {
-        return ""
-                + (byte) ((b >> 7) & 0x1) + (byte) ((b >> 6) & 0x1)
-                + (byte) ((b >> 5) & 0x1) + (byte) ((b >> 4) & 0x1)
-                + (byte) ((b >> 3) & 0x1) + (byte) ((b >> 2) & 0x1)
-                + (byte) ((b >> 1) & 0x1) + (byte) ((b >> 0) & 0x1);
+    private String byteToBitString(byte b, boolean isNeedReplenish) {
+        if (isNeedReplenish) {
+            return ""
+                    + (byte) ((b >> 7) & 0x1) + (byte) ((b >> 6) & 0x1)
+                    + (byte) ((b >> 5) & 0x1) + (byte) ((b >> 4) & 0x1)
+                    + (byte) ((b >> 3) & 0x1) + (byte) ((b >> 2) & 0x1)
+                    + (byte) ((b >> 1) & 0x1) + (byte) ((b >> 0) & 0x1);
+        } else {
+            return "" + (byte) ((b >> 4) & 0x1)
+                    + (byte) ((b >> 3) & 0x1) + (byte) ((b >> 2) & 0x1)
+                    + (byte) ((b >> 1) & 0x1) + (byte) ((b >> 0) & 0x1);
+        }
     }
 }
