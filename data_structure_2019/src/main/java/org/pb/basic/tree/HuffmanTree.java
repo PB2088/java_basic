@@ -110,6 +110,38 @@ public class HuffmanTree {
          */
         private TreeNode rightChild;
 
+        public int getWeight() {
+            return weight;
+        }
+
+        public void setWeight(int weight) {
+            this.weight = weight;
+        }
+
+        public T getData() {
+            return data;
+        }
+
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        public TreeNode getLeftChild() {
+            return leftChild;
+        }
+
+        public void setLeftChild(TreeNode leftChild) {
+            this.leftChild = leftChild;
+        }
+
+        public TreeNode getRightChild() {
+            return rightChild;
+        }
+
+        public void setRightChild(TreeNode rightChild) {
+            this.rightChild = rightChild;
+        }
+
         public TreeNode(int weight) {
             this.weight = weight;
         }
