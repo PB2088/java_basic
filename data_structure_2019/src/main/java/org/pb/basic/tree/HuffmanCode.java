@@ -71,7 +71,7 @@ public class HuffmanCode {
      * @param stringBuilder 用于拼接路径
      * @return
      */
-    private <T> Map<Byte, String> getHuffmanCodes(HuffmanTree.TreeNode<T> node, String code, StringBuilder
+    private <T> void getHuffmanCodes(HuffmanTree.TreeNode<T> node, String code, StringBuilder
             stringBuilder) {
         StringBuilder codeStringBuilder = new StringBuilder(stringBuilder);
         codeStringBuilder.append(code);
@@ -87,8 +87,6 @@ public class HuffmanCode {
                 HUFF_MAN_NODE_CODE_MAP.put(codeStringBuilder.toString(), (Byte) node.getData());
             }
         }
-
-        return HUFF_MAN_CODE_MAP;
     }
 
     /**
