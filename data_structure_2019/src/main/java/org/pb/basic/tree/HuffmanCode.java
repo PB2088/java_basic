@@ -66,6 +66,7 @@ public class HuffmanCode {
     }
 
     /**
+     * 得到赫夫曼编码表
      * @param node          待处理的节点
      * @param code          路径：左子节点是0,右子节点是1
      * @param stringBuilder 用于拼接路径
@@ -103,6 +104,7 @@ public class HuffmanCode {
         }
 
         int len = stringBuilder.length() % 8 == 0 ? stringBuilder.length() / 8 : stringBuilder.length() / 8 + 1;
+        System.out.println("压缩："+stringBuilder);
 
         byte[] huffmanCodeBytes = new byte[len];
         int index = 0;
@@ -122,6 +124,7 @@ public class HuffmanCode {
         for (int i = 0; i < huffmanBytes.length; i++) {
             stringBuilder.append(byteToBitString(huffmanBytes[i]));
         }
+        System.out.println("解压："+stringBuilder);
 
         List<Byte> byteList = new ArrayList<>();
         for (int i = 0; i < stringBuilder.length(); ) {
