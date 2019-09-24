@@ -1,5 +1,6 @@
 package org.pb.util;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -31,6 +32,12 @@ public class Test {
         cal.set(Calendar.MINUTE, 0);
         cal.set(Calendar.SECOND, 0);
         startDate = cal.getTime();
+
+        double d = 37.41901090789798;
+
+        System.out.println(BigDecimal.valueOf(d).setScale(2, BigDecimal.ROUND_HALF_DOWN));
+
+        System.out.println(BigDecimal.ZERO.compareTo(new BigDecimal("")));
 
         System.out.println(startDate);
     }
