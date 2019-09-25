@@ -1,5 +1,6 @@
 package org.pb.basic.tree;
 
+import java.io.*;
 import java.util.*;
 
 /**
@@ -17,12 +18,24 @@ public class HuffmanCode {
 
         HuffmanCode huffmanCode = new HuffmanCode();
 
-        byte[] huffmanBytes = huffmanCode.huffmanZip(contentBytes);
+/*        byte[] huffmanBytes = huffmanCode.huffmanZip(contentBytes);
 
         System.out.println(Arrays.toString(huffmanBytes));
 
-        byte[] bytes = huffmanCode.decode(huffmanBytes);
-        System.out.println(new String(bytes));
+        byte[] bytes = huffmanCode.decode(huffmanBytes,HUFF_MAN_NODE_CODE_MAP);
+        System.out.println(new String(bytes));*/
+
+        String srcPath = "E:" + File.separatorChar + "001.avi";
+        String destPath = "E:" + File.separatorChar + "001.avi.zip";
+
+        huffmanCode.compress(srcPath,destPath);
+
+        System.out.println("压缩完成!");
+
+/*        String zipFilePath = "E:" + File.separatorChar + "222.bmp.zip";
+        String destPath = "E:" + File.separatorChar + "333.bmp";
+
+        huffmanCode.decompress(zipFilePath,destPath);*/
 
     }
 
@@ -120,7 +133,7 @@ public class HuffmanCode {
         return huffmanCodeBytes;
     }
 
-    public byte[] decode(byte[] huffmanBytes) {
+    public byte[] decode(byte[] huffmanBytes,Map<String, Byte> map) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < huffmanBytes.length; i++) {
             stringBuilder.append(byteToBitString(huffmanBytes[i],!(i == huffmanBytes.length -1)));
@@ -133,7 +146,7 @@ public class HuffmanCode {
             boolean isRunning = true;
             while (isRunning) {
                 String key = stringBuilder.substring(i, i + step);
-                Byte b = HUFF_MAN_NODE_CODE_MAP.get(key);
+                Byte b = map.get(key);
 
                 if (Objects.nonNull(b)) {
                     byteList.add(b);
@@ -171,6 +184,54 @@ public class HuffmanCode {
             return "" + (byte) ((b >> 4) & 0x1)
                     + (byte) ((b >> 3) & 0x1) + (byte) ((b >> 2) & 0x1)
                     + (byte) ((b >> 1) & 0x1) + (byte) ((b >> 0) & 0x1);
+        }
+    }
+
+    /**
+     * 赫夫曼文件压缩
+     * @param src 源文件路径
+     * @param dest 压缩后文件路径
+     */
+    public void compress(String src,String dest) {
+
+        try(FileInputStream fis = new FileInputStream(src);
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(dest))
+        ) {
+            byte[] b = new byte[fis.available()];
+            fis.read(b);
+
+            /** 进行赫夫曼压缩  */
+            byte[] huffmanBytes = huffmanZip(b);
+
+            /** 把压缩后的字节数组写入压缩文件 */
+            oos.writeObject(huffmanBytes);
+
+            /** 把赫夫曼编码表写入压缩文件,以便恢复文件使用 */
+            oos.writeObject(HUFF_MAN_NODE_CODE_MAP);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 赫夫曼解压缩
+     * @param zipFile 待解压文件路径
+     * @param destFile 解压缩后文件路径
+     */
+    public void decompress(String zipFile,String destFile) {
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(zipFile));
+            OutputStream os = new FileOutputStream(destFile)
+        ) {
+            byte[] huffmanBytes = (byte[]) ois.readObject();
+            Map<String,Byte> map = (Map<String, Byte>) ois.readObject();
+
+            /** 赫夫曼解压缩 */
+            byte[] decodeBytes = decode(huffmanBytes, map);
+
+            /** 将解压后的字节数组写入文件 */
+            os.write(decodeBytes);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
