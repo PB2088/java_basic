@@ -197,7 +197,7 @@ public class BinaryTree {
 	}
 	
 	/**
-	 * 获取后续节点
+	 * 获取后继节点
 	 * @param node
 	 * @return
 	 */

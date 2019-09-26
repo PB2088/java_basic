@@ -144,11 +144,11 @@ public class BinaryTree<V> {
      * @return
      */
     public V postOrderSearch(long key) {
-        TreeNode treeNode = inOrderSearch(root, key);
+        TreeNode treeNode = postOrderSearch(root, key);
         return Objects.nonNull(treeNode) ? (V) treeNode.value : null;
     }
 
-    private TreeNode postOrderSearch(TreeNode node, long key) {
+    protected TreeNode postOrderSearch(TreeNode node, long key) {
         TreeNode treeNode = null;
         if (Objects.nonNull(node)) {
             treeNode = postOrderSearch(node.leftChild, key);
@@ -169,8 +169,34 @@ public class BinaryTree<V> {
         return treeNode;
     }
 
+    /**
+     * 查找指定节点的父节点
+     * @param targetNode 目标节点
+     * @return 父节点
+     */
+    public TreeNode searchParentNode(TreeNode targetNode) {
+        return searchParentNode(root,targetNode);
+    }
 
-    private static class TreeNode<V> {
+    private TreeNode searchParentNode(TreeNode searchNode,TreeNode targetNode) {
+        if (Objects.isNull(searchNode)) {
+            return null;
+        }
+
+        if (searchNode.leftChild == targetNode || searchNode.rightChild == targetNode) {
+            return searchNode;
+        }
+
+        TreeNode treeNode = searchParentNode(searchNode.leftChild, targetNode);
+        if (Objects.nonNull(treeNode)) {
+            return treeNode;
+        }
+
+        return searchParentNode(searchNode.rightChild, targetNode);
+    }
+
+
+    protected static class TreeNode<V> {
         /**
          * 关键值
          */

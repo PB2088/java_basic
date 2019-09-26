@@ -63,4 +63,13 @@ public class BinaryTreeTest {
         Hero hero = binaryTree.postOrderSearch(007);
         System.out.println(hero);
     }
+
+    @Test
+    public void testSearchParent() {
+        BinaryTree.TreeNode treeNode = binaryTree.postOrderSearch(binaryTree.getRoot(), 007);
+
+        BinaryTree.TreeNode parentNode = binaryTree.searchParentNode(treeNode);
+
+        System.out.println(parentNode.getValue());
+    }
 }
