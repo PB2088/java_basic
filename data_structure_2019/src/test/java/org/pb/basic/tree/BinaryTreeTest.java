@@ -16,24 +16,36 @@ public class BinaryTreeTest {
     public void setUp() {
         binaryTree = new BinaryTree();
 
-        binaryTree.insert(005,new Hero(005,"宋江"));
-        binaryTree.insert(003,new Hero(003,"卢俊义"));
-        binaryTree.insert(006,new Hero(006,"吴用"));
-        binaryTree.insert(002,new Hero(002,"林冲"));
-        binaryTree.insert(004,new Hero(004,"鲁智深"));
-        binaryTree.insert(007,new Hero(007,"花荣"));
+        binaryTree.insert(9,new Hero(9,"宋江"));
+        binaryTree.insert(8,new Hero(8,"卢俊义"));
+        binaryTree.insert(11,new Hero(11,"吴用"));
+        binaryTree.insert(13,new Hero(13,"林冲"));
+        binaryTree.insert(12,new Hero(12,"鲁智深"));
+        binaryTree.insert(10,new Hero(10,"花荣"));
+        binaryTree.insert(7,new Hero(7,"李应"));
+        binaryTree.insert(14,new Hero(14,"鲁智深"));
+        binaryTree.insert(5,new Hero(5,"董平"));
+        binaryTree.insert(6,new Hero(6,"杨志"));
+        binaryTree.insert(2,new Hero(2,"索超"));
+        binaryTree.insert(1,new Hero(1,"武松"));
     }
 
     @Test
-    public void testInser() {
+    public void testInsert() {
         binaryTree = new BinaryTree();
 
-        binaryTree.insert(005,new Hero(005,"宋江"));
-        binaryTree.insert(003,new Hero(003,"卢俊义"));
-        binaryTree.insert(006,new Hero(006,"吴用"));
-        binaryTree.insert(002,new Hero(002,"林冲"));
-        binaryTree.insert(004,new Hero(004,"鲁智深"));
-        binaryTree.insert(007,new Hero(007,"花荣"));
+        binaryTree.insert(9,new Hero(9,"宋江"));
+        binaryTree.insert(8,new Hero(8,"卢俊义"));
+        binaryTree.insert(11,new Hero(11,"吴用"));
+        binaryTree.insert(13,new Hero(13,"林冲"));
+        binaryTree.insert(12,new Hero(12,"鲁智深"));
+        binaryTree.insert(10,new Hero(10,"花荣"));
+        binaryTree.insert(7,new Hero(7,"李应"));
+        binaryTree.insert(14,new Hero(14,"鲁智深"));
+        binaryTree.insert(5,new Hero(5,"董平"));
+        binaryTree.insert(6,new Hero(6,"杨志"));
+        binaryTree.insert(2,new Hero(2,"索超"));
+        binaryTree.insert(1,new Hero(1,"武松"));
 
         System.out.println("中序遍历:");
         binaryTree.inOrder(binaryTree.getRoot());
@@ -66,10 +78,21 @@ public class BinaryTreeTest {
 
     @Test
     public void testSearchParent() {
-        BinaryTree.TreeNode treeNode = binaryTree.postOrderSearch(binaryTree.getRoot(), 007);
+        BinaryTree.TreeNode treeNode = binaryTree.postOrderSearch(binaryTree.getRoot(), 7);
 
         BinaryTree.TreeNode parentNode = binaryTree.searchParentNode(treeNode);
 
         System.out.println(parentNode.getValue());
+    }
+
+    @Test
+    public void testDeleteNode() {
+        System.out.println("删除节点前:");
+        binaryTree.inOrder(binaryTree.getRoot());
+
+        binaryTree.deleteNode(9);
+
+        System.out.println("删除节点后:");
+        binaryTree.inOrder(binaryTree.getRoot());
     }
 }

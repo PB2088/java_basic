@@ -170,15 +170,115 @@ public class BinaryTree<V> {
     }
 
     /**
+     * 删除节点
+     *
+     * @param key
+     */
+    public void deleteNode(long key) {
+        if (Objects.isNull(root)) {
+            System.out.println("空树,无法进行删除节点!");
+            return;
+        }
+
+        /* 中序遍历查找要删除的节点 */
+        TreeNode targetNode = postOrderSearch(root, key);
+        if (Objects.isNull(targetNode)) {
+            System.out.println("要删除的节点不存在!");
+            return;
+        }
+
+        if (Objects.isNull(targetNode.leftChild) && Objects.isNull(targetNode.rightChild)) {
+            deleteLeafNode(targetNode);
+        } else if (Objects.nonNull(targetNode.leftChild) && Objects.nonNull(targetNode.rightChild)) {
+            deleteWithTwoChildNodes(targetNode);
+        } else {
+            deleteWithOneChildNode(targetNode);
+        }
+    }
+
+    /**
+     * 删除有一个子节点的节点
+     * @param targetNode
+     */
+    private void deleteWithOneChildNode(TreeNode targetNode) {
+        final boolean isHasLeftChild = Objects.nonNull(targetNode.leftChild);
+
+        if (targetNode == root) {
+            if (isHasLeftChild) {
+                root = targetNode.leftChild;
+            } else {
+                root = targetNode.rightChild;
+            }
+        } else {
+            TreeNode parentNode = searchParentNode(targetNode);
+            final boolean isLeftChildOfParentNode = (targetNode == parentNode.leftChild);
+
+            if (isHasLeftChild && isLeftChildOfParentNode) {
+                parentNode.setLeftChild(targetNode.leftChild);
+            }
+
+            if (isHasLeftChild && !isLeftChildOfParentNode) {
+                parentNode.setRightChild(targetNode.leftChild);
+            }
+
+            if (!isHasLeftChild && isLeftChildOfParentNode) {
+                parentNode.setLeftChild(targetNode.rightChild);
+            }
+
+            if (!isHasLeftChild && !isLeftChildOfParentNode) {
+                parentNode.setRightChild(targetNode.rightChild);
+            }
+        }
+    }
+
+    /**
+     * 删除有两个子节点的节点
+     *
+     * @param targetNode
+     */
+    private void deleteWithTwoChildNodes(TreeNode targetNode) {
+        TreeNode parentNode = searchParentNode(targetNode);
+        TreeNode successor = getSuccessor(targetNode);
+
+        if (targetNode == root) {
+            root = successor;
+        } else if (targetNode == parentNode.leftChild) {
+            parentNode.setLeftChild(successor);
+        } else {
+            parentNode.setRightChild(successor);
+        }
+
+        successor.setLeftChild(targetNode.leftChild);
+    }
+
+    /**
+     * 删除叶子节点
+     *
+     * @param targetNode
+     */
+    private void deleteLeafNode(TreeNode targetNode) {
+        TreeNode parentNode = searchParentNode(targetNode);
+        if (targetNode == root) {
+            root = null;
+        } else if (targetNode == parentNode.leftChild) {
+            parentNode.setLeftChild(null);
+        } else {
+            parentNode.setRightChild(null);
+        }
+    }
+
+
+    /**
      * 查找指定节点的父节点
+     *
      * @param targetNode 目标节点
      * @return 父节点
      */
     public TreeNode searchParentNode(TreeNode targetNode) {
-        return searchParentNode(root,targetNode);
+        return searchParentNode(root, targetNode);
     }
 
-    private TreeNode searchParentNode(TreeNode searchNode,TreeNode targetNode) {
+    private TreeNode searchParentNode(TreeNode searchNode, TreeNode targetNode) {
         if (Objects.isNull(searchNode)) {
             return null;
         }
@@ -193,6 +293,31 @@ public class BinaryTree<V> {
         }
 
         return searchParentNode(searchNode.rightChild, targetNode);
+    }
+
+    /**
+     * 获取中序后继节点
+     *
+     * @param node
+     * @return
+     */
+    private TreeNode getSuccessor(TreeNode node) {
+        TreeNode current = node.getRightChild();
+        TreeNode successorParent = node;
+        TreeNode successor = node;
+
+        while (Objects.nonNull(current)) {
+            successorParent = successor;
+            successor = current;
+            current = current.getLeftChild();
+        }
+
+        if (successor != node.rightChild) {
+            successorParent.setLeftChild(successor.getRightChild());
+            successor.setRightChild(node.getRightChild());
+        }
+
+        return successor;
     }
 
 
