@@ -9,6 +9,7 @@ import java.util.Objects;
  * @create 2019-08-11 23:51
  */
 public class AvlTree<T> {
+    private static final int MAX_HEIGHT_DIFFERENCE = 1;
 
     private AvlTreeNode<T> root;
 
@@ -25,34 +26,92 @@ public class AvlTree<T> {
     }
 
     public void insert(long key, T value) {
-        AvlTreeNode<T> newNode = new AvlTreeNode<>(key, value);
-        if (Objects.isNull(root)) {
-            root = newNode;
-            return;
-        }
-
-        AvlTreeNode<T> currentNode = root;
-        AvlTreeNode<T> parentNode;
-        while (true) {
-            parentNode = currentNode;
-            if (key < currentNode.key) {
-                currentNode = currentNode.leftChild;
-                if (Objects.isNull(currentNode)) {
-                    parentNode.setLeftChild(newNode);
-                    break;
-                }
-            } else {
-                currentNode = currentNode.rightChild;
-                if (Objects.isNull(currentNode)) {
-                    parentNode.setRightChild(newNode);
-                    break;
-                }
-            }
-        }
+        root = insert(root, key, value);
     }
 
-    private void balance(AvlTreeNode<T> localNode) {
+    private AvlTreeNode<T> insert(AvlTreeNode<T> node, long key, T value) {
+        if (Objects.isNull(node)) {
+            return new AvlTreeNode<>(key, value);
+        }
 
+        if (node.key == key) {
+            return node;
+        }
+
+        if (key < node.key) {
+            node.leftChild = insert(node.leftChild, key, value);
+        } else {
+            node.rightChild = insert(node.rightChild, key, value);
+        }
+
+        return doBalance(node);
+    }
+
+    /**
+     * 处理平衡特性(如果左右子树高度差超过允许值,进行平衡处理)
+     * @param localNode 根节点
+     * @return 平衡后新的要节点
+     */
+    private AvlTreeNode<T> doBalance(AvlTreeNode<T> localNode) {
+        if (Objects.isNull(localNode)) {
+            return localNode;
+        }
+
+        /** 左右子树高度差超过允许值，且左子树较高，即在左子树插入导致不平衡 */
+        if (getHeight(localNode.leftChild) - getHeight(localNode.rightChild) > MAX_HEIGHT_DIFFERENCE) {
+            /** 在左（L）节点的左（右）子树插入导致不平衡，双旋转调整先左旋，再右旋 */
+            if (Objects.nonNull(localNode.leftChild) && getHeight(localNode.leftChild.rightChild) > getHeight(localNode.leftChild.leftChild)) {
+                localNode.leftChild = rotateWithLeft(localNode.leftChild);
+            }
+
+            /** 在左（L）节点的左（L）子树插入导致不平衡，单旋转调整，右旋转 */
+            localNode = rotateWithRight(localNode);
+        }
+
+        /** 左右子树高度差超过允许值，且右子树较高，即在右子树插入导致不平衡 */
+        if (getHeight(localNode.rightChild) - getHeight(localNode.leftChild) > MAX_HEIGHT_DIFFERENCE) {
+            /** 在右（R）节点的左（L）子树插入导致不平衡，双旋转调整，先右旋，再左旋 */
+            if (Objects.nonNull(localNode.rightChild) && getHeight(localNode.rightChild.leftChild) > getHeight(localNode.rightChild.rightChild)) {
+                localNode.rightChild = rotateWithRight(localNode.rightChild);
+            }
+
+            /** 在右（R）节点的右（R）子树插入导致不平衡，单旋转调整， 左旋转 */
+            localNode = rotateWithLeft(localNode);
+        }
+
+        return localNode;
+    }
+
+    /**
+     * LL型，右旋转
+     *
+     * @param node
+     * @return
+     */
+    private AvlTreeNode<T> rotateWithRight(AvlTreeNode<T> node) {
+        AvlTreeNode<T> newNode = node.leftChild;
+
+        node.leftChild = newNode.rightChild;
+
+        newNode.rightChild = node;
+
+        return newNode;
+    }
+
+    /**
+     * RR型，左旋转
+     *
+     * @param node
+     * @return
+     */
+    private AvlTreeNode<T> rotateWithLeft(AvlTreeNode<T> node) {
+        AvlTreeNode<T> newNode = node.rightChild;
+
+        node.rightChild = newNode.leftChild;
+
+        newNode.leftChild = node;
+
+        return newNode;
     }
 
     /**
@@ -210,6 +269,7 @@ public class AvlTree<T> {
 
     /**
      * 删除有一个子节点的节点
+     *
      * @param targetNode
      */
     private void deleteWithOneChildNode(AvlTreeNode targetNode) {
@@ -363,7 +423,6 @@ public class AvlTree<T> {
         public String toString() {
             return "TreeNode{" +
                     "key=" + key +
-                    ", value=" + value +
                     ", leftChild=" + (Objects.isNull(leftChild) ? null : leftChild.key) +
                     ", rightChild=" + (Objects.isNull(rightChild) ? null : rightChild.key) +
                     '}';
