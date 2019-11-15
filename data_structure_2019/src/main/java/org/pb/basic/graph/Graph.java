@@ -29,6 +29,10 @@ public class Graph {
         vertexs = new ArrayList<>(workSize);
     }
 
+    public void addVertex(String vertex) {
+        vertexs.add(vertex);
+    }
+
     /**
      * 增加一条边
      * @param start 边的起始位置
