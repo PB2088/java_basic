@@ -5,6 +5,11 @@ import org.pb.basic.search.Search;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 二分查找(非递归版)
+ * @author bo.peng
+ * @create 2019-11-10 20:00:00
+ */
 public class BinarySearNoRecur implements Search {
     public static void main(String[] args) {
         long[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 25, 38, 42, 65, 72, 81, 99};
