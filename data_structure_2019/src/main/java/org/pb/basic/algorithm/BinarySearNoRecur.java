@@ -4,6 +4,7 @@ import org.pb.basic.search.Search;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 /**
  * 二分查找(非递归版)
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class BinarySearNoRecur implements Search {
     public static void main(String[] args) {
-        long[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 22, 25, 38, 42, 65, 72, 81, 99};
+        long[] array = {1, 2, 3, 4, 5, 6, 7,8,8, 8,8,8, 9, 22, 25, 38, 42, 65, 72, 81, 99};
 
         Search search = new BinarySearNoRecur();
         System.out.println(search.search(array, 8));
@@ -30,6 +31,26 @@ public class BinarySearNoRecur implements Search {
                 left = mid + 1;
             } else {
                 indexs.add(mid);
+
+                /** 向mid左边扫描 */
+                int tempIndex = mid -1;
+                for (; ; ) {
+                    if (tempIndex < 0 || array[tempIndex] != findVal) {
+                        break;
+                    }
+                    indexs.add(tempIndex);
+                    tempIndex--;
+                }
+
+                /** 向mid右边扫描 */
+                tempIndex = mid + 1;
+                for (;;) {
+                    if (tempIndex > array.length -1 | array[tempIndex] != findVal) {
+                        break;
+                    }
+                    indexs.add(tempIndex);
+                    tempIndex++;
+                }
                 break;
             }
         }
