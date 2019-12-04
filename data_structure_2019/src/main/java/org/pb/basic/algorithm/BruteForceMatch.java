@@ -15,6 +15,12 @@ public class BruteForceMatch {
         System.out.printf("索引位置%d", index);
     }
 
+    /**
+     * 暴力匹配查找
+     * @param str
+     * @param substr
+     * @return
+     */
     public static int search(String str,String substr) {
         char[] strCharArray = str.toCharArray();
         char[] substrCharArray = substr.toCharArray();
