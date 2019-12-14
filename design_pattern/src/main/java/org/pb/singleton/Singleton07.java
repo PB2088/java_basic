@@ -1,4 +1,4 @@
-package org.pb;
+package org.pb.singleton;
 
 /**
  * 单例模式-枚举

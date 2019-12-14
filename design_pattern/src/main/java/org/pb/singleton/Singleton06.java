@@ -1,4 +1,4 @@
-package org.pb;
+package org.pb.singleton;
 
 /**
  * 单例模式-懒汉式(线程安全,静态内部类)

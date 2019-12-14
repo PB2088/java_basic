@@ -1,4 +1,4 @@
-package org.pb;
+package org.pb.singleton;
 
 /**
  * 单例模式-饿汉式(静态常量)

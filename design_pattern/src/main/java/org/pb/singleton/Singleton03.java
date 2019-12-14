@@ -1,4 +1,4 @@
-package org.pb;
+package org.pb.singleton;
 
 import java.util.Objects;
 
