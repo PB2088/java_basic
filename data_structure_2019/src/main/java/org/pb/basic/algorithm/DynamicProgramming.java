@@ -30,22 +30,20 @@ public class DynamicProgramming {
     public static void knapsackProblem() {
         int[][] bestValues = new int[packages.length+1][PACKAGE_WEIGHT+1];
 
-        for(int i=0;i<=packages.length;i++){
-            for(int j=0;j<=PACKAGE_WEIGHT;j++){
-                if(i==0||j==0){
+        for (int i = 0; i <= packages.length; i++) {
+            for (int j = 0; j <= PACKAGE_WEIGHT; j++) {
+                if (i == 0 || j == 0) {
                     //临界情况
-                    bestValues[i][j]=0;
-                }
-                else{
-                    if(j<packages[i-1].getWeight()){
+                    bestValues[i][j] = 0;
+                } else {
+                    if (j < packages[i - 1].getWeight()) {
                         //当第n件物品重量大于包的重量时，最佳值取前n-1件的
-                        bestValues[i][j] = bestValues[i-1][j];
-                    }
-                    else{
+                        bestValues[i][j] = bestValues[i - 1][j];
+                    } else {
                         //当第n件物品重量小于包的重量时，分两种情况，分别是装第n件或不装，比较取最大
-                        int iWeight = packages[i-1].getWeight();
-                        int iValue = packages[i-1].getValue();
-                        bestValues[i][j] = Math.max(bestValues[i-1][j], iValue + bestValues[i-1][j-iWeight]);
+                        int iWeight = packages[i - 1].getWeight();
+                        int iValue = packages[i - 1].getValue();
+                        bestValues[i][j] = Math.max(bestValues[i - 1][j], iValue + bestValues[i - 1][j - iWeight]);
                     }
                 }
             }
