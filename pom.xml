@@ -22,6 +22,7 @@
         <module>java8_demo</module>
         <module>java_design_pattern</module>
         <module>data_structure_2019</module>
+        <module>design_pattern</module>
     </modules>
 
     <name>java_basic_demo_mv</name>
