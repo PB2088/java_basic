@@ -1,11 +1,13 @@
 package org.pb.adapter.mode;
 
+import java.io.Serializable;
+
 /**
  * 日志数据对象
  * @author bo.peng
  * @create 2019-12-24 17:03
  */
-public class LogModel {
+public class LogModel implements Serializable {
     /** 日志编号 */
     private String logId;
 
@@ -17,6 +19,11 @@ public class LogModel {
 
     /** 日志内容 */
     private String logContent;
+
+    @Override
+    public String toString() {
+        return String.format("logId=%s,operateUser=%s,operateTime=%s,logContent=%s",logId,operateUser,operateTime,logContent);
+    }
 
     public String getLogId() {
         return logId;
