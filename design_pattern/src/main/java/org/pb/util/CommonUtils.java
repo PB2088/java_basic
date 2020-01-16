@@ -46,4 +46,35 @@ public final class CommonUtils {
 
         return null;
     }
+
+    public static String jsonParse(String jsonStr) {
+        char[] myBuffer = jsonStr.toCharArray();
+
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < jsonStr.length(); i++) {
+            Character.UnicodeBlock ub = Character.UnicodeBlock.of(myBuffer[i]);
+            // 判断是否是中日韩文字
+            if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS) {
+                char c = jsonStr.charAt(i);
+                sb.append("\\u");
+                //取出高8位
+                int j = (c >>>8);
+                String tmp = Integer.toHexString(j);
+                if (tmp.length() == 1) {
+                    sb.append("0");
+                }
+                sb.append(tmp);
+                //取出低8位
+                j = (c & 0xFF);
+                tmp = Integer.toHexString(j);
+                if (tmp.length() == 1)
+                    sb.append("0");
+                sb.append(tmp);
+            } else {
+                sb.append(myBuffer[i]);
+            }
+        }
+
+        return sb.toString();
+    }
 }
