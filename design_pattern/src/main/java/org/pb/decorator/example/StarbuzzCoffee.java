@@ -22,6 +22,7 @@ public class StarbuzzCoffee {
         houseBlend = new Soy(houseBlend);
         houseBlend = new Mocha(houseBlend);
         houseBlend = new Whip(houseBlend);
+        houseBlend = new Whip(houseBlend);
 
         System.out.println(houseBlend.getDescription() +"\t" +houseBlend.cost());
     }
