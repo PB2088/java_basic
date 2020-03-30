@@ -10,4 +10,9 @@ public interface MainBoardApi {
      * 主板具有开机功能
      */
     void open();
+
+    /**
+     * 主板具有实现重启的功能
+     */
+    void restart();
 }

@@ -9,6 +9,9 @@ public class Box {
     /** 开机命令对象 */
     private Command openCommand;
 
+    /** 重启命令对象 */
+    private Command restartCommand;
+
     /**
      * 设置开机命令对象
      * @param openCommand
@@ -18,10 +21,26 @@ public class Box {
     }
 
     /**
-     * 提供给客户使用,接收并响应客户请求,相当于按钮被按下触发的方法
+     * 设置重启命令对象
+     * @param restartCommand
+     */
+    public void setRestartCommand(Command restartCommand) {
+        this.restartCommand = restartCommand;
+    }
+
+    /**
+     * 提供给客户使用,接收并响应客户请求,相当于开机按钮被按下触发的方法
      */
     public void openButtonPressed() {
         /* 按下按钮,执行命令 */
         openCommand.execute();
+    }
+
+    /**
+     * 提供给客户使用,接收并响应客户请求,相当于重启按钮被按下触发的方法
+     */
+    public void restartButtonPressed() {
+        /* 按下按钮,执行命令 */
+        restartCommand.execute();
     }
 }
